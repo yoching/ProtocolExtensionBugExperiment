@@ -12,14 +12,22 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let object = SampleObject()
+        object.sampleMethod()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
+class SampleObject: NSObject, SampleProtocol {
+    
+}
+
+protocol SampleProtocol {
+    func sampleMethod()
+}
+
+extension SampleProtocol where Self: SampleObject {
+    func sampleMethod() {
+        print(type(of: self))
+    }
+}
